@@ -1,26 +1,43 @@
-# Daniel Dayan — Cybersecurity Portfolio
+# >_ DANIEL DAYAN
 
-Single-page portfolio: HTML + CSS + JS in one file (`index.html`). No build step.
+**Junior SOC Analyst · Cybersecurity & IT Support**
 
-## Run locally
-Open `index.html` in any browser.
+🟢 **Live site:** https://xxdndxx.github.io
 
-## Deploy — GitHub Pages (recommended)
-1. Create a new repo on GitHub named exactly: **xXDNDXx.github.io**
-2. Push this folder:
-   ```
-   git add .
-   git commit -m "portfolio"
-   git branch -M main
-   git remote add origin https://github.com/xXDNDXx/xXDNDXx.github.io.git
-   git push -u origin main
-   ```
-3. Live at: https://xXDNDXx.github.io
+---
 
-## Deploy — Netlify (alternative)
-Drag this folder onto https://app.netlify.com/drop — instant URL.
+## 👋 About
 
-## Before/after going live
-- `resume.pdf` — add your CV as PDF here so the Resume button works
-- `index.html` — update `og:url`, `og:image` and JSON-LD `"url"` to the final domain
-- Formspree — submit the contact form once and click the activation email
+Cybersecurity graduate of a hands-on 650-hour program sponsored by the
+Israel Ministry of Defense (Cisco & Fortinet specialization), with ongoing
+practice through Hack The Box Academy and a self-built home lab.
+Hands-on across enterprise networking, Windows Server/AD, Linux,
+FortiGate NGFW and SOC workflows — alert triage, log investigation and
+incident response with Splunk and IBM QRadar.
+
+## 🧰 Skills
+
+**SOC / Blue Team:** Splunk · Splunk SOAR · IBM QRadar · alert triage ·
+log investigation · incident response
+
+**Offensive tools:** Nmap · Wireshark · Burp Suite · OWASP ZAP · SQLMap ·
+Metasploit · ffuf · Hashcat · Hydra
+
+**Infrastructure:** FortiGate NGFW · Cisco IOS XE · Active Directory ·
+Windows Server 2022 · Linux / Kali · VLANs · OSPF · VPN/IPsec
+
+**Scripting:** Python · Bash · PowerShell
+
+## ✨ About this site
+
+- Single `index.html` — pure HTML/CSS/JS, no frameworks, no build step
+- Hand-written effects: glitch hero, live-typing terminal, reactive grid,
+  parallax orbs, custom cursor
+- Fully responsive · respects `prefers-reduced-motion` · printable as a CV
+
+## 🔗 Find me
+
+[LinkedIn](https://www.linkedin.com/in/daniel-dayan-a66322352/) ·
+[GitHub](https://github.com/xXDNDXx) ·
+[CTF Write-ups](https://xxdndxx.gitbook.io/thm-writeups/)
+
