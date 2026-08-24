@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANIEL — Cybersecurity Portfolio</title>
+<meta name="description" content="Daniel Dayan — Junior SOC Analyst & Cybersecurity IT Support. 650-hour Cisco & Fortinet bootcamp (Israel MoD), Splunk & IBM QRadar, home lab, HTB Academy and CTF write-ups.">
+<meta name="theme-color" content="#00ff9c">
+<meta property="og:title" content="Daniel Dayan — Junior SOC Analyst">
+<meta property="og:description" content="650-hour Cisco & Fortinet cybersecurity bootcamp, Splunk & QRadar SOC workflows, home lab and CTF write-ups.">
+<meta property="og:type" content="website">
+<!-- EDIT: after deploying, set these two to your real URL + a 1200x630 preview image -->
+<meta property="og:url" content="https://xXDNDXx.github.io/">
+<meta property="og:image" content="https://xXDNDXx.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23071210'/><text x='32' y='43' font-family='monospace' font-size='30' font-weight='bold' fill='%2300ff9c' text-anchor='middle'>%3E_</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Daniel Dayan",
+  "jobTitle": "Junior SOC Analyst",
+  "description": "Cybersecurity graduate of a 650-hour Cisco & Fortinet program (Israel MoD), hands-on with Splunk, IBM QRadar, FortiGate and a self-built home lab.",
+  "url": "https://xXDNDXx.github.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/daniel-dayan-a66322352/",
+    "https://github.com/xXDNDXx",
+    "https://xxdndxx.gitbook.io/thm-writeups/"
+  ],
+  "knowsAbout": ["SOC", "Splunk", "IBM QRadar", "Incident Response", "Network Security", "FortiGate", "Python"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'JetBrains Mono',monospace;background:#070b10;color:#c9d6df;line-height:1.7;overflow-x:hidden}
+::selection{background:#00ff9c;color:#04120b}
+
+/* ---------- background: grid + glow orbs + scanlines ---------- */
+.bg{position:fixed;inset:0;z-index:-2;background:#070b10;
+ background-image:linear-gradient(rgba(0,255,156,.045) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(0,255,156,.045) 1px,transparent 1px);
+ background-size:44px 44px}
+.orb-layer{position:absolute;inset:-9vw;will-change:transform}
+/* interactive grid — squares light up under the mouse */
+#gridFx{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.16;will-change:transform;animation:drift 18s ease-in-out infinite alternate}
+.orb.o1{width:40vw;height:40vw;background:#00ff9c;top:-12vw;left:-10vw}
+.orb.o2{width:34vw;height:34vw;background:#22d3ee;top:30vh;right:-10vw;animation-delay:-6s}
+.orb.o3{width:36vw;height:36vw;background:#a78bfa;bottom:-14vw;left:24vw;animation-delay:-11s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(4vw,-3vw) scale(1.12)}}
+.scanlines{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.35;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:1.4rem;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:2rem;padding:.65rem 1.5rem;background:rgba(10,16,22,.72);backdrop-filter:blur(14px);border:1px solid rgba(0,255,156,.22);border-radius:999px;box-shadow:0 0 30px rgba(0,255,156,.07)}
+.logo{font-weight:700;color:#00ff9c;text-decoration:none;font-size:.95rem}
+.logo span{color:#5b6f7d}
+nav ul{display:flex;list-style:none;gap:1.5rem}
+nav a.link{color:#8fa6b3;text-decoration:none;font-size:.85rem;transition:color .3s,text-shadow .3s}
+nav a.link:hover{color:#00ff9c;text-shadow:0 0 12px rgba(0,255,156,.6)}
+@media(max-width:720px){nav ul{display:none}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7.5rem 1.5rem 5rem;position:relative}
+.eyebrow{font-size:.85rem;color:#00ff9c;letter-spacing:.12em;margin-bottom:1.2rem}
+.eyebrow::before{content:'$ ';color:#5b6f7d}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.8rem,8vw,5.6rem);letter-spacing:.02em;color:#eafff6;line-height:1.05}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;overflow:hidden}
+.glitch::before{color:#00ff9c;z-index:-1;animation:gA 4s infinite steps(1,end)}
+.glitch::after{color:#22d3ee;z-index:-2;animation:gB 4s infinite steps(1,end)}
+@keyframes gA{0%,88%,100%{clip-path:inset(100% 0 0 0);transform:none}89%{clip-path:inset(20% 0 55% 0);transform:translate(-5px,2px)}92%{clip-path:inset(60% 0 10% 0);transform:translate(4px,-2px)}95%{clip-path:inset(35% 0 40% 0);transform:translate(-3px,1px)}98%{clip-path:inset(80% 0 5% 0);transform:translate(3px,2px)}}
+@keyframes gB{0%,88%,100%{clip-path:inset(100% 0 0 0);transform:none}90%{clip-path:inset(55% 0 20% 0);transform:translate(5px,-2px)}94%{clip-path:inset(10% 0 70% 0);transform:translate(-4px,2px)}97%{clip-path:inset(45% 0 30% 0);transform:translate(3px,-1px)}}
+.role{margin-top:1.2rem;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1rem,2vw,1.35rem);color:#22d3ee;letter-spacing:.28em;text-transform:uppercase}
+.hero p.lede{max-width:52ch;margin:1.6rem auto 2.6rem;color:#8fa6b3;font-size:.95rem}
+/* ---------- buttons ---------- */
+.btn-row{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;padding:.85rem 1.9rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.88rem;text-decoration:none;transition:all .35s ease;border:1px solid transparent}
+/* three colors: green = LinkedIn, cyan = GitHub, purple = Write-ups — all outline, all fill on hover */
+.btn-primary{color:#00ff9c;border:1.5px solid rgba(0,255,156,.5);background:rgba(0,255,156,.05);box-shadow:0 0 18px rgba(0,255,156,.28),inset 0 0 12px rgba(0,255,156,.1)}
+.btn-primary:hover{color:#04120b;background:#00ff9c;border-color:#00ff9c;box-shadow:0 0 40px rgba(0,255,156,.6),0 0 80px rgba(0,255,156,.25);transform:translateY(-3px)}
+.btn-ghost{color:#22d3ee;border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.05);box-shadow:0 0 18px rgba(34,211,238,.3),inset 0 0 12px rgba(34,211,238,.1)}
+.btn-ghost:hover{color:#04120b;background:#22d3ee;border-color:#22d3ee;box-shadow:0 0 40px rgba(34,211,238,.6),0 0 80px rgba(34,211,238,.25);transform:translateY(-3px)}
+.btn-cyan{color:#a78bfa;border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.06);box-shadow:0 0 18px rgba(167,139,250,.3),inset 0 0 12px rgba(167,139,250,.12)}
+.btn-cyan:hover{color:#0d0618;background:#a78bfa;border-color:#a78bfa;box-shadow:0 0 40px rgba(167,139,250,.6),0 0 80px rgba(167,139,250,.25);transform:translateY(-3px)}
+
+/* ---------- terminal window ---------- */
+.term{width:min(640px,92vw);margin:3.5rem auto 0;text-align:left;background:#0a1118;border:1px solid rgba(0,255,156,.25);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(0,255,156,.06)}
+.term-bar{display:flex;align-items:center;gap:.45rem;padding:.65rem 1rem;border-bottom:1px solid rgba(255,255,255,.07);background:#0c141d}
+.dot{width:.7rem;height:.7rem;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.term-title{margin-left:auto;font-size:.72rem;color:#5b6f7d}
+.term-body{padding:1.2rem 1.4rem;font-size:.85rem;line-height:2;color:#aebfc9;min-height:11.5rem}
+.t-prompt{color:#00ff9c;font-weight:700}
+.t-out{color:#22d3ee}
+.t-flag{color:#febc2e}
+.cursor::after{content:'▊';color:#00ff9c;animation:blink 1s steps(1) infinite;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- sections ---------- */
+section.pad{padding:6.5rem 1.5rem}
+.wrap{max-width:1060px;margin:0 auto}
+.center{text-align:center}
+.sec-label{font-size:.78rem;color:#00ff9c;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem}
+.sec-label::before{content:'# ';opacity:.55}
+h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.7rem,3.6vw,2.6rem);color:#eafff6;line-height:1.2}
+h2 span{color:#22d3ee}
+
+.stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-top:3rem}
+.stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:2.2rem;color:#00ff9c;text-shadow:0 0 18px rgba(0,255,156,.4)}
+.stat span{font-size:.75rem;color:#5b6f7d;letter-spacing:.18em;text-transform:uppercase}
+
+.chips{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2.6rem}
+.chip{padding:.5rem 1.15rem;border-radius:999px;border:1px solid rgba(0,255,156,.3);background:rgba(0,255,156,.05);font-size:.82rem;color:#b8e6d4;transition:all .3s}
+.chip:hover{border-color:#00ff9c;background:rgba(0,255,156,.14);box-shadow:0 0 16px rgba(0,255,156,.25);transform:translateY(-2px)}
+
+.certs{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;padding-top:2.5rem;border-top:1px dashed rgba(0,255,156,.2)}
+.cert{text-align:left;border-left:2px solid #00ff9c;padding-left:1rem}
+.cert b{color:#eafff6;font-size:.95rem}
+.cert span{display:block;font-size:.75rem;color:#5b6f7d}
+
+/* ---------- writeup cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem;margin-top:3.5rem;text-align:left}
+.card{background:#0a1118;border:1px solid rgba(34,211,238,.18);border-radius:14px;padding:2rem;transition:transform .45s cubic-bezier(.22,1,.36,1),border-color .45s,box-shadow .45s;display:flex;flex-direction:column;gap:.9rem}
+.card:hover{transform:translateY(-7px);border-color:#00ff9c;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 30px rgba(0,255,156,.1)}
+.card .meta{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#22d3ee}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:#eafff6;font-weight:600}
+.card p{font-size:.86rem;color:#8fa6b3;flex-grow:1}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.tag{font-size:.68rem;padding:.25rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:#8fa6b3}
+.diff{font-size:.7rem;padding:.25rem .7rem;border-radius:999px;font-weight:700}
+.diff.easy{color:#00ff9c;border:1px solid rgba(0,255,156,.4);background:rgba(0,255,156,.08)}
+.diff.med{color:#febc2e;border:1px solid rgba(254,188,46,.4);background:rgba(254,188,46,.08)}
+.diff.hard{color:#ff5f57;border:1px solid rgba(255,95,87,.4);background:rgba(255,95,87,.08)}
+.readmore{font-size:.82rem;color:#00ff9c;text-decoration:none;letter-spacing:.06em}
+.readmore:hover{text-shadow:0 0 12px rgba(0,255,156,.6)}
+
+/* ---------- contact ---------- */
+.contact-links{display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;margin-top:2.8rem;font-size:1.05rem}
+.c-link{color:#c9d6df;text-decoration:none;transition:all .3s}
+.c-link i{color:#00ff9c;font-style:normal}
+.c-link:hover{color:#00ff9c;text-shadow:0 0 14px rgba(0,255,156,.55)}
+
+footer{padding:3rem 1.5rem;text-align:center;color:#5b6f7d;font-size:.78rem;border-top:1px solid rgba(0,255,156,.1)}
+footer b{color:#00ff9c}
+
+/* ---------- premium upgrades ---------- */
+#scrollBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#00ff9c,#22d3ee,#a78bfa);box-shadow:0 0 12px rgba(0,255,156,.8);z-index:200}
+html{scrollbar-width:thin;scrollbar-color:#00ff9c #070b10}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#070b10}
+::-webkit-scrollbar-thumb{background:linear-gradient(#00ff9c,#0e7a5c);border-radius:99px;border:2px solid #070b10}
+.btn{animation:btnBreath 3.4s ease-in-out infinite}
+@keyframes btnBreath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+nav a.link.active{color:#00ff9c;text-shadow:0 0 12px rgba(0,255,156,.7)}
+.card{position:relative}
+.card::before,.card::after{content:'';position:absolute;width:18px;height:18px;opacity:0;transition:all .45s cubic-bezier(.22,1,.36,1)}
+.card::before{top:12px;left:12px;border-top:2px solid #00ff9c;border-left:2px solid #00ff9c}
+.card::after{bottom:12px;right:12px;border-bottom:2px solid #00ff9c;border-right:2px solid #00ff9c}
+.card:hover::before,.card:hover::after{opacity:1}
+.card:hover::before{top:8px;left:8px}
+.card:hover::after{bottom:8px;right:8px}
+.term{position:relative}
+.term::after{content:'';position:absolute;left:0;right:0;height:45%;top:-45%;background:linear-gradient(to bottom,transparent,rgba(0,255,156,.06),transparent);animation:termScan 7s linear infinite;pointer-events:none}
+@keyframes termScan{to{top:110%}}
+
+/* ---------- "now" ticker ---------- */
+.ticker{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.6rem;padding:.55rem 1.3rem;border:1px solid rgba(0,255,156,.25);border-radius:999px;background:rgba(0,255,156,.05);font-size:.8rem;color:#8fa6b3;flex-wrap:wrap;justify-content:center}
+.ticker b{color:#00ff9c;font-weight:500}
+.dot-live{width:7px;height:7px;background:#00ff9c;border-radius:50%;box-shadow:0 0 8px #00ff9c;animation:blink 1.6s steps(1) infinite}
+
+/* ---------- mobile nav ---------- */
+.nav-burger{display:none;background:none;border:1px solid rgba(0,255,156,.35);color:#00ff9c;font-size:1.15rem;border-radius:10px;width:2.3rem;height:2.3rem;cursor:pointer;align-items:center;justify-content:center}
+@media(max-width:720px){
+ nav{gap:1rem;padding:.55rem 1rem .55rem 1.2rem}
+ .nav-burger{display:flex}
+ nav ul{display:none;position:fixed;top:4.9rem;left:50%;transform:translateX(-50%);flex-direction:column;align-items:center;background:rgba(10,16,22,.96);border:1px solid rgba(0,255,156,.3);border-radius:18px;padding:1.3rem 2.6rem;gap:1.1rem;box-shadow:0 20px 50px rgba(0,0,0,.65)}
+ nav ul.open{display:flex}
+}
+/* ---------- mobile performance ---------- */
+@media(max-width:768px){
+ .orb{filter:blur(45px)}
+ .scanlines{display:none}
+}
+/* ---------- print: clean CV-style output ---------- */
+@media print{
+ .bg,.scanlines,nav,#gridFx,.term,.scroll-hint,.cur-dot,#scrollBar,.btn-row,.ticker,.btn,.contact-form{display:none!important}
+ body{background:#fff;color:#111}
+ .hero{min-height:auto;padding:1rem 0}
+ h1,.role,h2,h3,.card h3,.t-item h3{color:#000;text-shadow:none}
+ *{animation:none!important;transition:none!important;box-shadow:none!important;text-shadow:none!important}
+ section.pad{padding:1.1rem 0}
+ .card,.chip,.cert,.step,.t-item{background:#fff;border-color:#bbb;color:#111}
+ .card p,.step p,.t-item p,.lede{color:#333}
+ .reveal{opacity:1!important;transform:none!important}
+ .eyebrow::before,.sec-label::before{content:''}
+}
+
+/* ---------- projects & journey (portfolio upgrades) ---------- */
+.project-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;color:#00ff9c;text-decoration:none;letter-spacing:.06em}
+.project-link:hover{text-shadow:0 0 12px rgba(0,255,156,.6)}
+.project-link svg{width:15px;height:15px;fill:currentColor}
+.timeline{position:relative;max-width:720px;margin:3.5rem auto 0;text-align:left;padding-left:2.2rem}
+.timeline::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;background:linear-gradient(#00ff9c,#22d3ee,#a78bfa);box-shadow:0 0 10px rgba(0,255,156,.35)}
+.t-item{position:relative;padding:0 0 2.6rem 1.8rem}
+.t-item:last-child{padding-bottom:0}
+.t-item::before{content:'';position:absolute;left:-2.2rem;top:.35rem;width:12px;height:12px;margin-left:-5px;background:#070b10;border:2px solid #00ff9c;border-radius:50%;box-shadow:0 0 12px rgba(0,255,156,.7)}
+.t-item .when{font-size:.72rem;color:#22d3ee;letter-spacing:.22em;text-transform:uppercase}
+.t-item h3{font-family:'Space Grotesk',sans-serif;font-weight:600;color:#eafff6;font-size:1.12rem;margin:.35rem 0 .45rem}
+.t-item p{font-size:.88rem;color:#8fa6b3}
+.t-item .tags{margin-top:.6rem}
+
+/* ---------- contact form ---------- */
+.contact-form{display:flex;flex-direction:column;gap:.8rem;max-width:520px;margin:2.8rem auto 0;text-align:left}
+.contact-form input,.contact-form textarea{padding:.95rem 1.4rem;border-radius:14px;border:1px solid rgba(0,255,156,.25);background:rgba(10,16,22,.6);color:#eafff6;font:inherit;font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#00ff9c;box-shadow:0 0 0 4px rgba(0,255,156,.12)}
+.contact-form ::placeholder{color:#5b6f7d}
+.contact-form textarea{resize:vertical;min-height:110px}
+.contact-form .btn{align-self:center;margin-top:.4rem}
+
+/* ---------- custom cyber cursor: glowing dot only ---------- */
+html.cc, html.cc body, html.cc a, html.cc button{cursor:none}
+html.cc input{cursor:text}
+.cur-dot{position:fixed;top:0;left:0;width:8px;height:8px;margin:-4px 0 0 -4px;background:#00ff9c;border-radius:50%;pointer-events:none;z-index:1200;box-shadow:0 0 12px rgba(0,255,156,.95),0 0 26px rgba(0,255,156,.45)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+ <div class="orb-layer" id="orbLayer">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+ </div>
+</div>
+<canvas id="gridFx" aria-hidden="true"></canvas>
+<div class="scanlines" aria-hidden="true"></div>
+
+<nav aria-label="Main">
+ <a class="logo" href="#">&gt;_<span> daniel</span></a>
+ <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+ <ul>
+  <li><a class="link" href="#about">about</a></li>
+  <li><a class="link" href="#skills">skills</a></li>
+  <li><a class="link" href="#projects">projects</a></li>
+  <li><a class="link" href="#journey">journey</a></li>
+  <li><a class="link" href="#writeups">walkthroughs</a></li>
+  <li><a class="link" href="#contact">contact</a></li>
+ </ul>
+</nav>
+
+<header class="hero">
+ <!-- EDIT: replace DANIEL with your name/handle (also update data-text) -->
+ <p class="eyebrow">whoami</p>
+ <h1><span class="glitch" data-text="DANIEL">DANIEL</span></h1>
+ <p class="role">Junior SOC Analyst · Cybersecurity &amp; IT Support</p>
+ <p class="lede">Defender by training, breaker by curiosity — 650 hours of Cisco &amp; Fortinet training, hands-on SOC work with Splunk &amp; QRadar, a self-built home lab, and a write-up for everything I solve.</p>
+ <div class="btn-row">
+  <!-- EDIT: your real links -->
+  <a class="btn btn-primary" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  <a class="btn btn-ghost" href="https://github.com/xXDNDXx" target="_blank" rel="noopener">GitHub ↗</a>
+  <a class="btn btn-cyan" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">CTF Write-ups ↗</a>
+ </div>
+
+  <div class="ticker reveal visible"><span class="dot-live"></span>currently learning:&nbsp;<b>HTB Academy modules</b>&nbsp;·&nbsp;<b>SOC playbooks</b>&nbsp;·&nbsp;<b>Python automation</b></div>
+ <div class="term reveal visible" role="img" aria-label="Terminal showing a demo session">
+  <div class="term-bar">
+   <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+   <span class="term-title">daniel@kali: ~</span>
+  </div>
+  <div class="term-body" id="termBody"><span class="cursor" id="cur"></span></div>
+ </div>
+</header>
+
+<section id="about" class="pad center">
+ <div class="wrap">
+  <p class="sec-label reveal">whoami</p>
+  <h2 class="reveal">Curiosity first. <span>Method always.</span></h2>
+  <p class="lede reveal" style="margin:1.6rem auto 0;max-width:62ch;color:#8fa6b3;font-size:.92rem">
+   Cybersecurity graduate of a hands-on 650-hour program sponsored by the Israel Ministry of Defense
+   (Cisco &amp; Fortinet specialization), with ongoing practice through Hack The Box Academy and a self-built home lab.
+   Hands-on across enterprise networking, Windows Server/AD, Linux, FortiGate NGFW and SOC workflows —
+   alert triage, log investigation and the incident response lifecycle with Splunk and IBM QRadar.
+  </p>
+  <div class="stats reveal">
+   <!-- EDIT: your real numbers -->
+   <div class="stat"><b>650</b><span>Bootcamp Hours</span></div>
+   <div class="stat"><b>15+</b><span>Security Tools</span></div>
+   <div class="stat"><b>3</b><span>SIEM / SOAR Platforms</span></div>
+   <div class="stat"><b>20+</b><span>Write-ups</span></div>
+  </div>
+ </div>
+</section>
+<section id="skills" class="pad center">
+ <div class="wrap">
+  <p class="sec-label reveal">skillset</p>
+  <h2 class="reveal">Tools of the <span>trade.</span></h2>
+  <div class="chips reveal">
+   <span class="chip">Splunk</span><span class="chip">Splunk SOAR</span>
+   <span class="chip">IBM QRadar SIEM</span><span class="chip">Alert Triage</span>
+   <span class="chip">Log Investigation</span><span class="chip">Incident Response</span>
+   <span class="chip">Nmap</span><span class="chip">Wireshark</span>
+   <span class="chip">Burp Suite</span><span class="chip">OWASP ZAP</span>
+   <span class="chip">SQLMap</span><span class="chip">Metasploit</span>
+   <span class="chip">ffuf</span><span class="chip">Hashcat</span>
+   <span class="chip">Hydra</span><span class="chip">FortiGate NGFW</span>
+   <span class="chip">Cisco IOS XE</span><span class="chip">Active Directory</span>
+   <span class="chip">Windows Server 2022</span><span class="chip">Linux · Kali</span>
+   <span class="chip">Python</span><span class="chip">Bash</span>
+   <span class="chip">PowerShell</span><span class="chip">VLANs · OSPF · VPN/IPsec</span>
+  </div>
+  <div class="certs reveal">
+   <div class="cert"><b>ITQ Cyber Bootcamp — 650h</b><span>Israel MoD track · 2024–2025</span></div>
+   <div class="cert"><b>Cisco &amp; Fortinet Specialization</b><span>networking · NGFW · VPN</span></div>
+   <div class="cert"><b>HTB Academy</b><span>offensive modules · 2025–present</span></div>
+   <div class="cert"><b>LPI Linux Track</b><span>CLI · administration · Bash</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="projects" class="pad center">
+ <div class="wrap">
+  <p class="sec-label reveal">projects</p>
+  <h2 class="reveal">Things I've <span>built &amp; broken.</span></h2>
+  <div class="cards">
+   <!-- EDIT: replace with your real projects + repo links -->
+   <article class="card reveal">
+    <span class="meta">Java · Android</span>
+    <h3>CryptoTrack</h3>
+    <p>High-school final project: an Android app in Java for live cryptocurrency price tracking and USD/EUR/ILS conversion, built with a clean, simple interface.</p>
+    <div class="tags"><span class="tag">java</span><span class="tag">android</span><span class="tag">api</span></div>
+    <a class="project-link" href="https://github.com/xXDNDXx" target="_blank" rel="noopener">
+     <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+     view on github →
+    </a>
+   </article>
+   <article class="card reveal">
+    <span class="meta">Home Lab · Blue Team</span>
+    <h3>Personal Home Lab</h3>
+    <p>Self-built virtualized network: Windows Server with Active Directory, Linux and Kali machines. Practice service configuration, hardening, Wireshark traffic analysis, log review and evidence collection — scoped end to end.</p>
+    <div class="tags"><span class="tag">active directory</span><span class="tag">wireshark</span><span class="tag">hardening</span></div>
+    <a class="project-link" href="https://github.com/xXDNDXx" target="_blank" rel="noopener">
+     <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+     view on github →
+    </a>
+   </article>
+   <article class="card reveal">
+    <span class="meta">Web · Write-ups</span>
+    <h3>GitBook Write-ups</h3>
+    <p>Every machine, room and challenge I solve gets a full write-up — methodology, dead ends included — so others can follow the same path and I can track my growth.</p>
+    <div class="tags"><span class="tag">gitbook</span><span class="tag">documentation</span><span class="tag">ctf</span></div>
+    <a class="project-link" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">
+     <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+     read them here →
+    </a>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section id="journey" class="pad center">
+ <div class="wrap">
+  <p class="sec-label reveal">journey</p>
+  <h2 class="reveal">How I got <span>here.</span></h2>
+  <div class="timeline">
+   <div class="t-item reveal">
+    <span class="when">2020 – 2022</span>
+    <h3>High School Computer Science — 10 Units</h3>
+    <p>Final project: an Android app in Java for crypto price tracking &amp; currency conversion (USD/EUR/ILS), plus web development with HTML/CSS.</p>
+    <div class="tags"><span class="tag">java</span><span class="tag">android</span><span class="tag">html/css</span></div>
+   </div>
+   <div class="t-item reveal">
+    <span class="when">2024 – 2025 · ITQ Cybersecurity Bootcamp</span>
+    <h3>650 Hands-on Hours — Cisco &amp; Fortinet</h3>
+    <p>Enterprise networking on Cisco IOS XE, Windows Server 2022 / AD, Linux (LPI track), FortiGate NGFW, and SOC workflows — alert triage, log investigation and IR lifecycle with IBM QRadar and Splunk SOAR.</p>
+    <div class="tags"><span class="tag">cisco</span><span class="tag">fortigate</span><span class="tag">soc</span><span class="tag">qradar</span></div>
+   </div>
+   <div class="t-item reveal">
+    <span class="when">2025 – Present</span>
+    <h3>HTB Academy, Home Lab &amp; CTF Write-ups</h3>
+    <p>Self-directed offensive security on Hack The Box Academy, a self-built virtualized home lab (Windows Server AD + Kali), Wireshark traffic analysis — and a public write-up for everything I solve.</p>
+    <div class="tags"><span class="tag">htb academy</span><span class="tag">home lab</span><span class="tag">write-ups</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="writeups" class="pad center">
+ <div class="wrap">
+  <p class="sec-label reveal">walkthroughs</p>
+  <h2 class="reveal">Latest CTF write-ups <span>&amp; lab notes.</span></h2>
+  <div class="cards">
+   <!-- EDIT: swap these with your real walkthrough links -->
+   <article class="card reveal">
+    <span class="meta">PicoCTF · Cryptography</span>
+    <h3>Caesar's Secrets — From Rotation to RSA</h3>
+    <p>Breaking classical ciphers with frequency analysis, then chaining the flag into an RSA warm-up. Full thought process included.</p>
+    <div class="tags"><span class="tag">crypto</span><span class="tag">python</span><span class="diff easy">EASY</span></div>
+    <a class="readmore" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">read walkthrough →</a>
+   </article>
+   <article class="card reveal">
+    <span class="meta">HackTheBox · Web</span>
+    <h3>VulnNet: Foothold via SSTI</h3>
+    <p>Enumerating a Node.js app, discovering a template injection point, escalating to RCE and pivoting through misconfigured services.</p>
+    <div class="tags"><span class="tag">web</span><span class="tag">rce</span><span class="diff med">MEDIUM</span></div>
+    <a class="readmore" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">read walkthrough →</a>
+   </article>
+   <article class="card reveal">
+    <span class="meta">TryHackMe · Forensics</span>
+    <h3>Memory Forensics: Hunting the Implant</h3>
+    <p>Using Volatility to carve process injection out of a memory dump, extracting C2 traffic and reconstructing the attacker timeline.</p>
+    <div class="tags"><span class="tag">dfir</span><span class="tag">volatility</span><span class="diff hard">HARD</span></div>
+    <a class="readmore" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">read walkthrough →</a>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section id="contact" class="pad center">
+ <div class="wrap">
+  <p class="sec-label reveal">connect</p>
+  <h2 class="reveal">Open to <span>SOC roles</span>, CTF teams &amp; collabs.</h2>
+  <div class="btn-row reveal" style="margin-top:2.4rem">
+   <!-- EDIT: put your resume PDF next to index.html and keep the name resume.pdf -->
+   <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Resume ↓</a>
+  </div>
+  <div class="contact-links reveal">
+   <a class="c-link" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener"><i>[</i> linkedin/in/daniel-dayan <i>]</i></a>
+   <a class="c-link" href="https://github.com/xXDNDXx" target="_blank" rel="noopener"><i>[</i> github.com/xXDNDXx <i>]</i></a>
+   <a class="c-link" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener"><i>[</i> ctf-writeups <i>]</i></a>
+  </div>
+  <!-- contact form powered by Formspree -->
+  <form class="contact-form reveal" action="https://formspree.io/f/mzeplzva" method="POST">
+   <input type="text" name="name" placeholder="name" required>
+   <input type="email" name="email" placeholder="email" required>
+   <textarea name="message" placeholder="message" rows="4" required></textarea>
+   <button class="btn btn-primary" type="submit">Send transmission →</button>
+  </form>
+ </div>
+</section>
+
+<footer>
+ <p><b>&gt;_</b> © 2026 DANIEL · THM · HTB · CTFs · built in the terminal · <span id="uptime"></span></p>
+</footer>
+<script>
+// ---------- scroll reveals ----------
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+      if (e.target.classList.contains('sec-label')) scramble(e.target);
+      if (e.target.classList.contains('stats')) countUp(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+// text "decryption" — random chars resolve into the real label
+function scramble(el) {
+  const orig = el.dataset.orig || (el.dataset.orig = el.textContent);
+  const chars = '!<>-_\\/[]{}=+*^?#01';
+  let frame = 0;
+  const iv = setInterval(() => {
+    frame++;
+    const solved = Math.floor(frame / 2);
+    el.textContent = orig.slice(0, solved) +
+      orig.slice(solved).split('').map(c => c === ' ' ? ' ' : chars[Math.random() * chars.length | 0]).join('');
+    if (solved >= orig.length) { el.textContent = orig; clearInterval(iv); }
+  }, 34);
+}
+
+// stats count up from 0 when they appear
+function countUp(statsEl) {
+  statsEl.querySelectorAll('.stat b').forEach(b => {
+    const m = b.textContent.match(/^(\d+)(.*)$/);
+    if (!m) return;
+    const end = +m[1], suf = m[2];
+    let cur = 0;
+    (function step() {
+      cur += Math.max(1, end / 40);
+      if (cur >= end) { b.textContent = end + suf; return; }
+      b.textContent = Math.floor(cur) + suf;
+      requestAnimationFrame(step);
+    })();
+  });
+}
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+  io.observe(el);
+});
+
+// ---------- nav spy: highlight the section you're in ----------
+const spy = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('nav a.link').forEach(a =>
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+// ---------- nav burger (mobile) ----------
+const burger = document.querySelector('.nav-burger');
+const menu = document.querySelector('nav ul');
+if (burger && menu) {
+  burger.addEventListener('click', () => {
+    menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', menu.classList.contains('open'));
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+}
+
+// ---------- scroll progress beam ----------
+const bar = document.createElement('div');
+bar.id = 'scrollBar';
+document.body.appendChild(bar);
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+}, { passive: true });
+
+// ---------- live-typing terminal demo ----------
+const body = document.getElementById('termBody');
+const cur = document.getElementById('cur');
+const script = [
+  { text: 'nmap -sV -p- target.ctf', cls: 't-prompt' },
+  { text: '  → 22/tcp   ssh     OpenSSH 8.4', cls: 't-out' },
+  { text: '  → 80/tcp   http    nginx 1.24', cls: 't-out' },
+  { text: '  → 8080/tcp http    Node.js Express', cls: 't-out' },
+  { text: 'cat writeups/htb-vulnnet.md | grep flag', cls: 't-prompt' },
+  { text: '  ✓ flag{f00th0ld_via_ssti} — root owned', cls: 't-flag' }
+];
+let li = 0, ci = 0;
+function type() {
+  if (li >= script.length) { setTimeout(() => { body.innerHTML = ''; cur.remove(); body.appendChild(cur); li = 0; ci = 0; type(); }, 6000); return; }
+  const line = script[li];
+  let el = body.querySelector(`[data-l="${li}"]`);
+  if (!el) {
+    el = document.createElement('div');
+    el.className = line.cls; el.dataset.l = li;
+    body.insertBefore(el, cur);
+  }
+  if (ci <= line.text.length) {
+    el.textContent = line.text.slice(0, ci++);
+    setTimeout(type, line.cls === 't-prompt' ? 55 : 14);
+  } else { li++; ci = 0; setTimeout(type, 350); }
+}
+type();
+
+// ---------- cyber cursor: glowing dot + liquid glow tail ----------
+if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.classList.add('cc');
+  const dot = document.createElement('div');
+  dot.className = 'cur-dot';
+  document.body.appendChild(dot);
+  let mx = innerWidth / 2, my = innerHeight / 2;
+  const orbLayer = document.getElementById('orbLayer');
+  const bgGrid = document.querySelector('.bg');
+  // --- reactive grid squares ---
+  const fx = document.getElementById('gridFx'), fctx = fx.getContext('2d');
+  const CS = 44, RAD = 120;                 // cell size (matches grid) + reaction radius
+  const cellEnergy = new Map();             // cell -> glow level (fades over time)
+  function sizeFx() { fx.width = innerWidth; fx.height = innerHeight; }
+  sizeFx();
+  addEventListener('resize', sizeFx);
+  addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px,${my}px)`;
+  }, { passive: true });
+  (function loop() {
+    // background parallax — orbs & grid respond to mouse position
+    const nx = mx / innerWidth - .5, ny = my / innerHeight - .5;
+    if (orbLayer) orbLayer.style.transform = `translate(${(nx * -55).toFixed(1)}px,${(ny * -40).toFixed(1)}px)`;
+    if (bgGrid) bgGrid.style.backgroundPosition = `${(nx * 16).toFixed(1)}px ${(ny * 12).toFixed(1)}px, ${(nx * 16).toFixed(1)}px ${(ny * 12).toFixed(1)}px`;
+    // grid squares light up near the mouse, then fade out
+    fctx.clearRect(0, 0, fx.width, fx.height);
+    const ccx = Math.floor(mx / CS), ccy = Math.floor(my / CS);
+    for (let gx = ccx - 3; gx <= ccx + 3; gx++) {
+      for (let gy = ccy - 3; gy <= ccy + 3; gy++) {
+        const d = Math.hypot(mx - (gx * CS + CS / 2), my - (gy * CS + CS / 2));
+        if (d < RAD) {
+          const key = gx + ',' + gy;
+          cellEnergy.set(key, Math.min(1, (cellEnergy.get(key) || 0) + (1 - d / RAD) * .3));
+        }
+      }
+    }
+    for (const [key, v] of cellEnergy) {
+      const nv = v * .93;                    // slow fade after mouse leaves
+      if (nv < .02) { cellEnergy.delete(key); continue; }
+      cellEnergy.set(key, nv);
+      const [gx, gy] = key.split(',').map(Number);
+      fctx.fillStyle = `rgba(0,255,156,${(nv * .3).toFixed(3)})`;
+      fctx.fillRect(gx * CS + 1, gy * CS + 1, CS - 2, CS - 2);
+    }
+    requestAnimationFrame(loop);
+  })();
+}
+
+// ---------- footer uptime counter (fun detail) ----------
+const start = Date.now();
+setInterval(() => {
+  const s = Math.floor((Date.now() - start) / 1000);
+  const m = String(Math.floor(s / 60)).padStart(2, '0');
+  const ss = String(s % 60).padStart(2, '0');
+  document.getElementById('uptime').textContent = `uptime ${m}:${ss}`;
+}, 1000);
+</script>
+</body>
+</html>
