@@ -6,13 +6,18 @@
 <title>DANIEL — Cybersecurity Portfolio</title>
 <meta name="description" content="Daniel Dayan — Junior SOC Analyst & Cybersecurity IT Support. 650-hour Cisco & Fortinet bootcamp (Israel MoD), Splunk & IBM QRadar, home lab, HTB Academy and CTF write-ups.">
 <meta name="theme-color" content="#00ff9c">
+<meta name="color-scheme" content="dark">
 <meta property="og:title" content="Daniel Dayan — Junior SOC Analyst">
 <meta property="og:description" content="650-hour Cisco & Fortinet cybersecurity bootcamp, Splunk & QRadar SOC workflows, home lab and CTF write-ups.">
 <meta property="og:type" content="website">
 <!-- EDIT: after deploying, set these two to your real URL + a 1200x630 preview image -->
 <meta property="og:url" content="https://xXDNDXx.github.io/">
 <meta property="og:image" content="https://xXDNDXx.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Dayan — Junior SOC Analyst portfolio with a terminal-style dark theme">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://xXDNDXx.github.io/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23071210'/><text x='32' y='43' font-family='monospace' font-size='30' font-weight='bold' fill='%2300ff9c' text-anchor='middle'>%3E_</text></svg>">
 <script type="application/ld+json">
 {
@@ -22,20 +27,23 @@
   "jobTitle": "Junior SOC Analyst",
   "description": "Cybersecurity graduate of a 650-hour Cisco & Fortinet program (Israel MoD), hands-on with Splunk, IBM QRadar, FortiGate and a self-built home lab.",
   "url": "https://xXDNDXx.github.io/",
+  "image": "https://xXDNDXx.github.io/og.png",
   "sameAs": [
     "https://www.linkedin.com/in/daniel-dayan-a66322352/",
     "https://github.com/xXDNDXx",
-    "https://xxdndxx.gitbook.io/thm-writeups/"
+    "https://xxdndxx.github.io/ctf-writeups/"
   ],
   "knowsAbout": ["SOC", "Splunk", "IBM QRadar", "Incident Response", "Network Security", "FortiGate", "Python"]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://formspree.io">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:dark}
 body{font-family:'JetBrains Mono',monospace;background:#070b10;color:#c9d6df;line-height:1.7;overflow-x:hidden}
 ::selection{background:#00ff9c;color:#04120b}
 
@@ -47,26 +55,26 @@ body{font-family:'JetBrains Mono',monospace;background:#070b10;color:#c9d6df;lin
 .orb-layer{position:absolute;inset:-9vw;will-change:transform}
 /* interactive grid — squares light up under the mouse */
 #gridFx{position:fixed;inset:0;z-index:-1;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.16;will-change:transform;animation:drift 18s ease-in-out infinite alternate}
-.orb.o1{width:40vw;height:40vw;background:#00ff9c;top:-12vw;left:-10vw}
-.orb.o2{width:34vw;height:34vw;background:#22d3ee;top:30vh;right:-10vw;animation-delay:-6s}
-.orb.o3{width:36vw;height:36vw;background:#a78bfa;bottom:-14vw;left:24vw;animation-delay:-11s}
+.orb{position:absolute;border-radius:50%;opacity:1;will-change:transform;animation:drift 18s ease-in-out infinite alternate}
+.orb.o1{width:40vw;height:40vw;background:radial-gradient(closest-side,rgba(0,255,156,.18),rgba(0,255,156,.07) 45%,transparent 72%);top:-12vw;left:-10vw}
+.orb.o2{width:34vw;height:34vw;background:radial-gradient(closest-side,rgba(34,211,238,.18),rgba(34,211,238,.07) 45%,transparent 72%);top:30vh;right:-10vw;animation-delay:-6s}
+.orb.o3{width:36vw;height:36vw;background:radial-gradient(closest-side,rgba(167,139,250,.16),rgba(167,139,250,.06) 45%,transparent 72%);bottom:-14vw;left:24vw;animation-delay:-11s}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(4vw,-3vw) scale(1.12)}}
 .scanlines{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.35;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
 
 /* ---------- nav ---------- */
-nav{position:fixed;top:1.4rem;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:2rem;padding:.65rem 1.5rem;background:rgba(10,16,22,.72);backdrop-filter:blur(14px);border:1px solid rgba(0,255,156,.22);border-radius:999px;box-shadow:0 0 30px rgba(0,255,156,.07)}
+nav{position:fixed;top:1.4rem;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:2rem;padding:.65rem 1.5rem;background:rgba(10,16,22,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(0,255,156,.22);border-radius:999px;box-shadow:0 0 30px rgba(0,255,156,.07)}
 .logo{font-weight:700;color:#00ff9c;text-decoration:none;font-size:.95rem}
-.logo span{color:#5b6f7d}
+.logo span{color:#7f95a5}
 nav ul{display:flex;list-style:none;gap:1.5rem}
 nav a.link{color:#8fa6b3;text-decoration:none;font-size:.85rem;transition:color .3s,text-shadow .3s}
 nav a.link:hover{color:#00ff9c;text-shadow:0 0 12px rgba(0,255,156,.6)}
 @media(max-width:720px){nav ul{display:none}}
 
 /* ---------- hero ---------- */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7.5rem 1.5rem 5rem;position:relative}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7.5rem 1.5rem 5rem;position:relative}
 .eyebrow{font-size:.85rem;color:#00ff9c;letter-spacing:.12em;margin-bottom:1.2rem}
-.eyebrow::before{content:'$ ';color:#5b6f7d}
+.eyebrow::before{content:'$ ';color:#7f95a5}
 h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.8rem,8vw,5.6rem);letter-spacing:.02em;color:#eafff6;line-height:1.05}
 .glitch{position:relative;display:inline-block}
 .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;overflow:hidden}
@@ -76,6 +84,8 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.8rem
 @keyframes gB{0%,88%,100%{clip-path:inset(100% 0 0 0);transform:none}90%{clip-path:inset(55% 0 20% 0);transform:translate(5px,-2px)}94%{clip-path:inset(10% 0 70% 0);transform:translate(-4px,2px)}97%{clip-path:inset(45% 0 30% 0);transform:translate(3px,-1px)}}
 .role{margin-top:1.2rem;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1rem,2vw,1.35rem);color:#22d3ee;letter-spacing:.28em;text-transform:uppercase}
 .hero p.lede{max-width:52ch;margin:1.6rem auto 2.6rem;color:#8fa6b3;font-size:.95rem}
+p.lede-about{max-width:62ch;margin:1.6rem auto 0;font-size:.92rem}
+.btn-row-contact{margin-top:2.4rem}
 /* ---------- buttons ---------- */
 .btn-row{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center}
 .btn{display:inline-block;padding:.85rem 1.9rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.88rem;text-decoration:none;transition:all .35s ease;border:1px solid transparent}
@@ -92,7 +102,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.8rem
 .term-bar{display:flex;align-items:center;gap:.45rem;padding:.65rem 1rem;border-bottom:1px solid rgba(255,255,255,.07);background:#0c141d}
 .dot{width:.7rem;height:.7rem;border-radius:50%}
 .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
-.term-title{margin-left:auto;font-size:.72rem;color:#5b6f7d}
+.term-title{margin-left:auto;font-size:.72rem;color:#7f95a5}
 .term-body{padding:1.2rem 1.4rem;font-size:.85rem;line-height:2;color:#aebfc9;min-height:11.5rem}
 .t-prompt{color:#00ff9c;font-weight:700}
 .t-out{color:#22d3ee}
@@ -111,7 +121,7 @@ h2 span{color:#22d3ee}
 
 .stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-top:3rem}
 .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:2.2rem;color:#00ff9c;text-shadow:0 0 18px rgba(0,255,156,.4)}
-.stat span{font-size:.75rem;color:#5b6f7d;letter-spacing:.18em;text-transform:uppercase}
+.stat span{font-size:.75rem;color:#7f95a5;letter-spacing:.18em;text-transform:uppercase}
 
 .chips{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2.6rem}
 .chip{padding:.5rem 1.15rem;border-radius:999px;border:1px solid rgba(0,255,156,.3);background:rgba(0,255,156,.05);font-size:.82rem;color:#b8e6d4;transition:all .3s}
@@ -120,7 +130,7 @@ h2 span{color:#22d3ee}
 .certs{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;padding-top:2.5rem;border-top:1px dashed rgba(0,255,156,.2)}
 .cert{text-align:left;border-left:2px solid #00ff9c;padding-left:1rem}
 .cert b{color:#eafff6;font-size:.95rem}
-.cert span{display:block;font-size:.75rem;color:#5b6f7d}
+.cert span{display:block;font-size:.75rem;color:#7f95a5}
 
 /* ---------- writeup cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem;margin-top:3.5rem;text-align:left}
@@ -144,7 +154,7 @@ h2 span{color:#22d3ee}
 .c-link i{color:#00ff9c;font-style:normal}
 .c-link:hover{color:#00ff9c;text-shadow:0 0 14px rgba(0,255,156,.55)}
 
-footer{padding:3rem 1.5rem;text-align:center;color:#5b6f7d;font-size:.78rem;border-top:1px solid rgba(0,255,156,.1)}
+footer{padding:3rem 1.5rem;text-align:center;color:#7f95a5;font-size:.78rem;border-top:1px solid rgba(0,255,156,.1)}
 footer b{color:#00ff9c}
 
 /* ---------- premium upgrades ---------- */
@@ -197,6 +207,8 @@ nav a.link.active{color:#00ff9c;text-shadow:0 0 12px rgba(0,255,156,.7)}
  .card p,.step p,.t-item p,.lede{color:#333}
  .reveal{opacity:1!important;transform:none!important}
  .eyebrow::before,.sec-label::before{content:''}
+ .glitch::before,.glitch::after{display:none}
+ .term::after,.t-item::before,.timeline::before{display:none}
 }
 
 /* ---------- projects & journey (portfolio upgrades) ---------- */
@@ -217,9 +229,10 @@ nav a.link.active{color:#00ff9c;text-shadow:0 0 12px rgba(0,255,156,.7)}
 .contact-form{display:flex;flex-direction:column;gap:.8rem;max-width:520px;margin:2.8rem auto 0;text-align:left}
 .contact-form input,.contact-form textarea{padding:.95rem 1.4rem;border-radius:14px;border:1px solid rgba(0,255,156,.25);background:rgba(10,16,22,.6);color:#eafff6;font:inherit;font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s}
 .contact-form input:focus,.contact-form textarea:focus{border-color:#00ff9c;box-shadow:0 0 0 4px rgba(0,255,156,.12)}
-.contact-form ::placeholder{color:#5b6f7d}
+.contact-form ::placeholder{color:#7f95a5}
 .contact-form textarea{resize:vertical;min-height:110px}
 .contact-form .btn{align-self:center;margin-top:.4rem}
+.form-hp{position:absolute;left:-9999px;height:0;width:0;opacity:0}
 
 /* ---------- custom cyber cursor: glowing dot only ---------- */
 html.cc, html.cc body, html.cc a, html.cc button{cursor:none}
@@ -229,10 +242,24 @@ html.cc input{cursor:text}
 /* ---------- reveal ---------- */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* skip below-the-fold paint work until sections approach the viewport */
+section.pad{content-visibility:auto;contain-intrinsic-size:1px 900px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ---------- accessibility & polish upgrades ---------- */
+.skip-link{position:fixed;top:-4rem;left:50%;transform:translateX(-50%);z-index:1300;padding:.7rem 1.6rem;background:#00ff9c;color:#04120b;border-radius:0 0 10px 10px;font-weight:700;text-decoration:none;transition:top .3s}
+.skip-link:focus{top:0}
+:focus-visible{outline:2px solid #00ff9c;outline-offset:3px;border-radius:4px}
+/* soft vignette to focus the eye without changing the vibe */
+.bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 120% 90% at 50% 40%,transparent 55%,rgba(2,5,8,.55) 100%);pointer-events:none}
+.form-status{margin-top:.9rem;font-size:.82rem;letter-spacing:.06em;min-height:1.4em;color:#00ff9c;text-shadow:0 0 10px rgba(0,255,156,.45)}
+.form-status.err{color:#ff5f57;text-shadow:0 0 10px rgba(255,95,87,.45)}
+.btn[disabled]{opacity:.55;pointer-events:none}
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body>
+<body id="top">
+<a class="skip-link" href="#main">skip to content</a>
 <div class="bg" aria-hidden="true">
  <div class="orb-layer" id="orbLayer">
   <div class="orb o1"></div>
@@ -244,8 +271,8 @@ html.cc input{cursor:text}
 <div class="scanlines" aria-hidden="true"></div>
 
 <nav aria-label="Main">
- <a class="logo" href="#">&gt;_<span> daniel</span></a>
- <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+ <a class="logo" href="#top">&gt;_<span> daniel</span></a>
+ <button type="button" class="nav-burger" aria-label="Toggle menu" aria-expanded="false">☰</button>
  <ul>
   <li><a class="link" href="#about">about</a></li>
   <li><a class="link" href="#skills">skills</a></li>
@@ -256,6 +283,7 @@ html.cc input{cursor:text}
  </ul>
 </nav>
 
+<main id="main" tabindex="-1">
 <header class="hero">
  <!-- EDIT: replace DANIEL with your name/handle (also update data-text) -->
  <p class="eyebrow">whoami</p>
@@ -264,9 +292,9 @@ html.cc input{cursor:text}
  <p class="lede">Defender by training, breaker by curiosity — 650 hours of Cisco &amp; Fortinet training, hands-on SOC work with Splunk &amp; QRadar, a self-built home lab, and a write-up for everything I solve.</p>
  <div class="btn-row">
   <!-- EDIT: your real links -->
-  <a class="btn btn-primary" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener">LinkedIn ↗</a>
-  <a class="btn btn-ghost" href="https://github.com/xXDNDXx" target="_blank" rel="noopener">GitHub ↗</a>
-  <a class="btn btn-cyan" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">CTF Write-ups ↗</a>
+  <a class="btn btn-primary" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+  <a class="btn btn-ghost" href="https://github.com/xXDNDXx" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  <a class="btn btn-cyan" href="https://xxdndxx.github.io/ctf-writeups/" target="_blank" rel="noopener noreferrer">CTF Write-ups ↗</a>
  </div>
 
   <div class="ticker reveal visible"><span class="dot-live"></span>currently learning:&nbsp;<b>HTB Academy modules</b>&nbsp;·&nbsp;<b>SOC playbooks</b>&nbsp;·&nbsp;<b>Python automation</b></div>
@@ -275,7 +303,17 @@ html.cc input{cursor:text}
    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
    <span class="term-title">daniel@kali: ~</span>
   </div>
-  <div class="term-body" id="termBody"><span class="cursor" id="cur"></span></div>
+   <div class="term-body" id="termBody">
+    <noscript>
+     <div class="t-prompt">nmap -sV -p- target.ctf</div>
+     <div class="t-out">  → 22/tcp   ssh     OpenSSH 8.4</div>
+     <div class="t-out">  → 80/tcp   http    nginx 1.24</div>
+     <div class="t-out">  → 8080/tcp http    Node.js Express</div>
+     <div class="t-prompt">cat writeups/htb-vulnnet.md | grep flag</div>
+     <div class="t-flag">  ✓ flag{f00th0ld_via_ssti} — root owned</div>
+    </noscript>
+    <span class="cursor" id="cur"></span>
+   </div>
  </div>
 </header>
 
@@ -283,7 +321,7 @@ html.cc input{cursor:text}
  <div class="wrap">
   <p class="sec-label reveal">whoami</p>
   <h2 class="reveal">Curiosity first. <span>Method always.</span></h2>
-  <p class="lede reveal" style="margin:1.6rem auto 0;max-width:62ch;color:#8fa6b3;font-size:.92rem">
+   <p class="lede reveal lede-about">
    Cybersecurity graduate of a hands-on 650-hour program sponsored by the Israel Ministry of Defense
    (Cisco &amp; Fortinet specialization), with ongoing practice through Hack The Box Academy and a self-built home lab.
    Hands-on across enterprise networking, Windows Server/AD, Linux, FortiGate NGFW and SOC workflows —
@@ -336,17 +374,17 @@ html.cc input{cursor:text}
     <h3>CTF Tracker</h3>
     <p>Single-page tracker for the CTF grind — 399 HTB &amp; THM machines with flag checkboxes, hints, session timers, activity streaks, a reverse-shell generator and built-in cheat sheets. Zero backend, all local.</p>
     <div class="tags"><span class="tag">html</span><span class="tag">javascript</span><span class="tag">localstorage</span></div>
-    <a class="project-link" href="https://github.com/xXDNDXx/ccna-lab" target="_blank" rel="noopener">
-     <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-     view on github →
-    </a>
-   </article>
-   <article class="card reveal">
-    <span class="meta">JavaScript · Study App</span>
-    <h3>CCNA Lab</h3>
+     <a class="project-link" href="https://github.com/xXDNDXx/ctf-tracker" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      view on github →
+     </a>
+    </article>
+    <article class="card reveal">
+     <span class="meta">JavaScript · Study App</span>
+     <h3>CCNA Lab</h3>
     <p>Open-source study companion for the Cisco CCNA 200-301: 20 study topics, an 871-question drill bank with hints and explanations, and a full exam simulator — 103 questions, 120 minutes, scored /1000. Live on GitHub Pages.</p>
     <div class="tags"><span class="tag">javascript</span><span class="tag">education</span><span class="tag">871 questions</span></div>
-    <a class="project-link" href="https://github.com/xXDNDXx/ccna-lab" target="_blank" rel="noopener">
+    <a class="project-link" href="https://github.com/xXDNDXx/ccna-lab" target="_blank" rel="noopener noreferrer">
      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
      view on github →
     </a>
@@ -356,24 +394,14 @@ html.cc input{cursor:text}
     <h3>CPTS Field Manual</h3>
     <p>Field-ready penetration testing notes for the HTB CPTS — the full kill chain from enumeration to Active Directory attacks (Kerberoasting, DCSync), with NetExec cheat sheets and exam playbooks.</p>
     <div class="tags"><span class="tag">pentest</span><span class="tag">methodology</span><span class="tag">active-directory</span></div>
-    <a class="project-link" href="https://github.com/xXDNDXx/cpts-notes" target="_blank" rel="noopener">
+    <a class="project-link" href="https://github.com/xXDNDXx/cpts-notes" target="_blank" rel="noopener noreferrer">
      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
      view on github →
     </a>
-   </article>
-   <article class="card reveal">
-    <span class="meta">IT Support · Service Desk</span>
-    <h3>Support &amp; Ticketing Experience</h3>
-    <p>Managed user requests end to end in SAP and CRM ticketing workflows — logging, prioritizing and tracking cases to closure under time pressure, with structured troubleshooting and a user-support mindset.</p>
-    <div class="tags"><span class="tag">sap</span><span class="tag">crm</span><span class="tag">troubleshooting</span></div>
-    <a class="project-link" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener">
-     <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-     more on linkedin →
-    </a>
-   </article>
+    </article>
+   </div>
   </div>
- </div>
-</section>
+ </section>
 
 <section id="journey" class="pad center">
  <div class="wrap">
@@ -413,21 +441,21 @@ html.cc input{cursor:text}
     <h3>Caesar's Secrets — From Rotation to RSA</h3>
     <p>Breaking classical ciphers with frequency analysis, then chaining the flag into an RSA warm-up. Full thought process included.</p>
     <div class="tags"><span class="tag">crypto</span><span class="tag">python</span><span class="diff easy">EASY</span></div>
-    <a class="readmore" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">read walkthrough →</a>
+    <a class="readmore" href="https://xxdndxx.github.io/ctf-writeups/" target="_blank" rel="noopener noreferrer">read walkthrough →</a>
    </article>
    <article class="card reveal">
     <span class="meta">HackTheBox · Web</span>
     <h3>VulnNet: Foothold via SSTI</h3>
     <p>Enumerating a Node.js app, discovering a template injection point, escalating to RCE and pivoting through misconfigured services.</p>
     <div class="tags"><span class="tag">web</span><span class="tag">rce</span><span class="diff med">MEDIUM</span></div>
-    <a class="readmore" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">read walkthrough →</a>
+    <a class="readmore" href="https://xxdndxx.github.io/ctf-writeups/" target="_blank" rel="noopener noreferrer">read walkthrough →</a>
    </article>
    <article class="card reveal">
     <span class="meta">TryHackMe · Forensics</span>
     <h3>Memory Forensics: Hunting the Implant</h3>
     <p>Using Volatility to carve process injection out of a memory dump, extracting C2 traffic and reconstructing the attacker timeline.</p>
     <div class="tags"><span class="tag">dfir</span><span class="tag">volatility</span><span class="diff hard">HARD</span></div>
-    <a class="readmore" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener">read walkthrough →</a>
+    <a class="readmore" href="https://xxdndxx.github.io/ctf-writeups/" target="_blank" rel="noopener noreferrer">read walkthrough →</a>
    </article>
   </div>
  </div>
@@ -437,37 +465,41 @@ html.cc input{cursor:text}
  <div class="wrap">
   <p class="sec-label reveal">connect</p>
   <h2 class="reveal">Open to <span>SOC roles</span>, CTF teams &amp; collabs.</h2>
-  <div class="btn-row reveal" style="margin-top:2.4rem">
+   <div class="btn-row reveal btn-row-contact">
    <!-- EDIT: put your resume PDF next to index.html and keep the name resume.pdf -->
-   <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Resume ↓</a>
+   <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume ↓</a>
   </div>
   <div class="contact-links reveal">
-   <a class="c-link" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener"><i>[</i> linkedin/in/daniel-dayan <i>]</i></a>
-   <a class="c-link" href="https://github.com/xXDNDXx" target="_blank" rel="noopener"><i>[</i> github.com/xXDNDXx <i>]</i></a>
-   <a class="c-link" href="https://xxdndxx.gitbook.io/thm-writeups/" target="_blank" rel="noopener"><i>[</i> ctf-writeups <i>]</i></a>
+   <a class="c-link" href="https://www.linkedin.com/in/daniel-dayan-a66322352/" target="_blank" rel="noopener noreferrer"><i>[</i> linkedin/in/daniel-dayan <i>]</i></a>
+   <a class="c-link" href="https://github.com/xXDNDXx" target="_blank" rel="noopener noreferrer"><i>[</i> github.com/xXDNDXx <i>]</i></a>
+   <a class="c-link" href="https://xxdndxx.github.io/ctf-writeups/" target="_blank" rel="noopener noreferrer"><i>[</i> ctf-writeups <i>]</i></a>
   </div>
   <!-- contact form powered by Formspree -->
-  <form class="contact-form reveal" action="https://formspree.io/f/mzeplzva" method="POST">
-   <input type="text" name="name" placeholder="name" required>
-   <input type="email" name="email" placeholder="email" required>
-   <textarea name="message" placeholder="message" rows="4" required></textarea>
+  <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/mzeplzva" method="POST">
+   <input type="text" name="name" placeholder="name" aria-label="your name" autocomplete="name" required>
+   <input type="email" name="email" placeholder="email" aria-label="your email" autocomplete="email" required>
+   <textarea name="message" placeholder="message" aria-label="your message" rows="4" required></textarea>
+    <input class="form-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-label="leave this field empty">
    <button class="btn btn-primary" type="submit">Send transmission →</button>
+   <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
   </form>
- </div>
-</section>
+  </div>
+ </section>
+</main>
 
 <footer>
  <p><b>&gt;_</b> © 2026 DANIEL · THM · HTB · CTFs · built in the terminal · <span id="uptime"></span></p>
 </footer>
 <script>
 // ---------- scroll reveals ----------
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
       io.unobserve(e.target);
-      if (e.target.classList.contains('sec-label')) scramble(e.target);
-      if (e.target.classList.contains('stats')) countUp(e.target);
+      if (e.target.classList.contains('sec-label') && !REDUCED) scramble(e.target);
+      if (e.target.classList.contains('stats') && !REDUCED) countUp(e.target);
     }
   });
 }, { threshold: 0.15 });
@@ -511,8 +543,12 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
 const spy = new IntersectionObserver(es => {
   es.forEach(e => {
     if (e.isIntersecting) {
-      document.querySelectorAll('nav a.link').forEach(a =>
-        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      document.querySelectorAll('nav a.link').forEach(a => {
+        const active = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('active', active);
+        if (active) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
     }
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
@@ -522,14 +558,25 @@ document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
 const burger = document.querySelector('.nav-burger');
 const menu = document.querySelector('nav ul');
 if (burger && menu) {
-  burger.addEventListener('click', () => {
-    menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', menu.classList.contains('open'));
-  });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  const closeMenu = () => {
     menu.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
-  }));
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); burger.focus(); } });
+  addEventListener('click', e => {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) closeMenu();
+  });
+  // leaving mobile widths (e.g. rotate / resize) must never keep the page scroll-locked
+  const mq = matchMedia('(min-width:721px)');
+  (mq.addEventListener ? mq.addEventListener('change', onMq) : mq.addListener(onMq));
+  function onMq(e) { if (e.matches) closeMenu(); }
 }
 
 // ---------- scroll progress beam ----------
@@ -554,6 +601,15 @@ const script = [
 ];
 let li = 0, ci = 0;
 function type() {
+  if (REDUCED) { // print the whole session statically, no typing animation
+    script.forEach(l => {
+      const d = document.createElement('div');
+      d.className = l.cls; d.textContent = l.text;
+      body.insertBefore(d, cur);
+    });
+    cur.remove();
+    return;
+  }
   if (li >= script.length) { setTimeout(() => { body.innerHTML = ''; cur.remove(); body.appendChild(cur); li = 0; ci = 0; type(); }, 6000); return; }
   const line = script[li];
   let el = body.querySelector(`[data-l="${li}"]`);
@@ -582,20 +638,42 @@ if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion
   const fx = document.getElementById('gridFx'), fctx = fx.getContext('2d');
   const CS = 44, RAD = 120;                 // cell size (matches grid) + reaction radius
   const cellEnergy = new Map();             // cell -> glow level (fades over time)
-  function sizeFx() { fx.width = innerWidth; fx.height = innerHeight; }
+  let rafId = null;
+  let lastMove = performance.now();
+  function sizeFx() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    fx.width = innerWidth * dpr; fx.height = innerHeight * dpr;
+    fctx.setTransform(dpr, 0, 0, dpr, 0, 0); // crisp on retina, capped for perf
+    cellEnergy.clear();
+  }
   sizeFx();
-  addEventListener('resize', sizeFx);
+  let rzRaf = null;
+  addEventListener('resize', () => {        // debounced so dragging the window doesn't thrash
+    if (rzRaf !== null) cancelAnimationFrame(rzRaf);
+    rzRaf = requestAnimationFrame(() => { sizeFx(); rzRaf = null; });
+  });
   addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
+    lastMove = performance.now();
     dot.style.transform = `translate(${mx}px,${my}px)`;
+    if (rafId === null) loop();             // resume when tab becomes visible again or idle-paused
   }, { passive: true });
-  (function loop() {
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;                         // save battery when tab is hidden
+    } else if (rafId === null && (cellEnergy.size > 0 || performance.now() - lastMove < 4000)) {
+      loop();
+    }
+  });
+  function loop() {
+    rafId = requestAnimationFrame(loop);
     // background parallax — orbs & grid respond to mouse position
     const nx = mx / innerWidth - .5, ny = my / innerHeight - .5;
     if (orbLayer) orbLayer.style.transform = `translate(${(nx * -55).toFixed(1)}px,${(ny * -40).toFixed(1)}px)`;
     if (bgGrid) bgGrid.style.backgroundPosition = `${(nx * 16).toFixed(1)}px ${(ny * 12).toFixed(1)}px, ${(nx * 16).toFixed(1)}px ${(ny * 12).toFixed(1)}px`;
     // grid squares light up near the mouse, then fade out
-    fctx.clearRect(0, 0, fx.width, fx.height);
+    fctx.clearRect(0, 0, innerWidth, innerHeight);
     const ccx = Math.floor(mx / CS), ccy = Math.floor(my / CS);
     for (let gx = ccx - 3; gx <= ccx + 3; gx++) {
       for (let gy = ccy - 3; gy <= ccy + 3; gy++) {
@@ -614,17 +692,53 @@ if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion
       fctx.fillStyle = `rgba(0,255,156,${(nv * .3).toFixed(3)})`;
       fctx.fillRect(gx * CS + 1, gy * CS + 1, CS - 2, CS - 2);
     }
-    requestAnimationFrame(loop);
-  })();
+    // idle: nothing glowing and mouse resting — pause the loop until it moves again
+    if (cellEnergy.size === 0 && performance.now() - lastMove > 4000) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+  loop();
+}
+
+// ---------- contact form: ajax submit + inline status (no redirect) ----------
+const form = document.getElementById('contactForm');
+if (form) {
+  const status = document.getElementById('formStatus');
+  const sendBtn = form.querySelector('button[type=submit]');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (form.querySelector('[name="_gotcha"]').value) return;   // honeypot tripped — silently drop bots
+    status.classList.remove('err');
+    status.textContent = '// transmitting...';
+    sendBtn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST', body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        status.textContent = '[✓] transmission received — i\'ll get back to you soon.';
+      } else throw new Error(res.status);
+    } catch (err) {
+      status.classList.add('err');
+      const why = (err && err.message && err.message !== 'Failed to fetch')
+        ? err.message : 'blocked by browser/shield or offline';
+      status.textContent = `[!] send failed (${why}) — check spam shield, or open formspree.io/f/mzeplzva directly`;
+    } finally { sendBtn.disabled = false; }
+  });
 }
 
 // ---------- footer uptime counter (fun detail) ----------
-const start = Date.now();
+const uptimeEl = document.getElementById('uptime');
+const t0 = Date.now();
 setInterval(() => {
-  const s = Math.floor((Date.now() - start) / 1000);
+  if (document.hidden || !uptimeEl) return;   // skip work while the tab is hidden
+  const s = Math.floor((Date.now() - t0) / 1000);
   const m = String(Math.floor(s / 60)).padStart(2, '0');
   const ss = String(s % 60).padStart(2, '0');
-  document.getElementById('uptime').textContent = `uptime ${m}:${ss}`;
+  uptimeEl.textContent = `uptime ${m}:${ss}`;
 }, 1000);
 </script>
 </body>
